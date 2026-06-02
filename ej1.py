@@ -13,31 +13,26 @@ def agregar_producto(productos):
     while True:
         try:
             stock = int(input("Ingrese stock: "))
-
             if stock >= 0:
                 break
             else:
                 print("Error: el stock debe ser mayor o igual a 0")
-
         except:
             print("Error: debe ingresar un número entero")
 
     while True:
         try:
             precio = int(input("Ingrese precio: "))
-
             if precio > 0:
                 break
             else:
                 print("Error: el precio debe ser mayor que 0")
-
         except:
             print("Error: debe ingresar un número")
 
     productos[nombre] = [stock, precio]
 
     print("Producto agregado correctamente")
-
 
 def mostrar_productos(productos):
 
@@ -117,7 +112,6 @@ while True:
 
     try:
         opcion = int(input("Ingrese una opción: "))
-
     except:
         print("Error: debe ingresar un número")
         continue
