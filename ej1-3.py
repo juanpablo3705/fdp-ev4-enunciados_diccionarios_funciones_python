@@ -48,7 +48,7 @@ def buscar_producto(diccionario_productos):
     if len(diccionario_productos) == 0:
         print("Error, no se han agregado productos, seleccione la opcion 1.")
     else:
-        producto_buscar = input("Ingrese el producto a buscar: ")
+        producto_buscar = input("Ingrese el producto a buscar: ").strip()
         if producto_buscar == "":
             print("Error, debe ingresar un producto.")
             return
