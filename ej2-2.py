@@ -29,7 +29,8 @@ def agregar_alumno(diccionario_a):
                     print(f"Nota {i + 1} ingresada con éxito.")
                     lista_notas.append(cada_nota)  # método para agregar nota a una lista
                 else:
-                    print("Error, la nota debe estar entre 1.0 y 7.0.")
+                    print("Error, la nota debe estar entre 1.0 y 7.0. Intente otra vez.")
+                    return  # aborta el ingreso de notas si una de las notas es menor a 1 o mayor a 7
             break
         except ValueError:
             print("Error, las notas deben ser números, no letras.")
@@ -38,7 +39,7 @@ def agregar_alumno(diccionario_a):
 
 # 2 función mostrar alumnos:
 def mostrar_alumnos(diccionario_a):
-    if diccionario_a == 0:   # diccionario vacío
+    if len(diccionario_a) == 0:   # diccionario vacío, usar len()
         print("Error, no hay alumnos registrados, por favor seleccione opción 1.")
     else:
         for nombre in diccionario_a:
