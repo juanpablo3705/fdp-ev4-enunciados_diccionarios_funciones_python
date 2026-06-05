@@ -26,7 +26,7 @@ def ver_promedios(diccionario_alumnos):
         for cada_nota in lista_notas: # proceso sumar y contar notas de la lista lista_notas. cada_nota significa cada nota de la lista
             suma_notas = suma_notas + cada_nota
             cantidad_notas = cantidad_notas + 1
-        promedio = suma_notas / cantidad_notas # si ya tengo la suma y el conteo, puedo sacar promedio
+        promedio = suma_notas / cantidad_notas # si ya tengo la suma y el conteo, puedo sacar promedio 
         print(f"Alumno: {cada_nombre}. Promedio: {promedio:.2f}.")
 
 # 4 funcion mejor alumno:
