@@ -30,7 +30,7 @@ def agregar_alumno(diccionario_a):
                     lista_notas.append(cada_nota)  # método para agregar nota a una lista
                 else:
                     print("Error, la nota debe estar entre 1.0 y 7.0. Intente otra vez.")
-                    return  # aborta el ingreso de notas si una de las notas es menor a 1 o mayor a 7
+                    return  # aborta todo el ingreso de notas si una de las notas es menor a 1 o mayor a 7
             break
         except ValueError:
             print("Error, las notas deben ser números, no letras.")
