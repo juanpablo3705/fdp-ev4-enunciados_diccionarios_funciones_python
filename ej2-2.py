@@ -1,50 +1,66 @@
+# importar funciones desde funciones-ej2-2.py:
+import funcionesej22 as fn2
+
 # inicializar diccionario vacío:
 diccionario_a = {}
 
 # 1 función agregar alumno:
 def agregar_alumno(diccionario_a):
 
-    nombre = input("Ingrese el nombre del alumno: ")
-    if (nombre == "") or (nombre in diccionario_a):
-        print("Error, el nombre no puede estar vacío ni repetirse con uno ya existente.")
-        return # usar return en vez de else para mejor orden. vuelve al inicio de def
+    while True:
+        nombre = input("Ingrese el nombre del alumno: ")
+        if (nombre == "") or (nombre in diccionario_a):
+            print("Error, el nombre no puede estar vacío ni repetirse con uno ya existente.")
+        else:
+            print("Nombre ingresado con éxito.")
+            break
     
     while True:
         try:
             notas_ingresar = int(input("Ingrese la cantidad de notas a registrar: "))
             if (notas_ingresar > 0):
-                print(f"A continuación, registre {notas_ingresar} notas.")
+                print(f"Éxito. Usted registrará {notas_ingresar} notas.")
                 break
             else:
                 print("Error, debe registrar al menos una nota.")
         except ValueError:
             print("Error, el valor debe ser numérico, sin decimales ni letras.")
 
-    while True:
-        try:
-            lista_notas = []
-            for i in range(notas_ingresar):   # usa range porque notas_ingresar no es iterable (es solo 1 numero)
-                cada_nota = float(input(f"Ingrese la nota número {i + 1}: "))
-                if (cada_nota >= 1) and (cada_nota <= 7):
-                    print(f"Nota {i + 1} ingresada con éxito.")
-                    lista_notas.append(cada_nota)  # método para agregar nota a una lista
-                else:
-                    print("Error, la nota debe estar entre 1.0 y 7.0. Intente otra vez.")
-                    return  # aborta todo el ingreso de notas si una de las notas es menor a 1 o mayor a 7
-            break
-        except ValueError:
-            print("Error, las notas deben ser números, no letras.")
+    lista_notas = []
+    for i in range(notas_ingresar): # usa range porque notas_ingresar no es iterable (es solo 1 numero).
+        cada_nota = validar_cada_nota() # esta funcion tira una nota por cada vuelta del for.
+        lista_notas.append(cada_nota) # como hice la validacion en una funcion aparte, si algo sale
+                                      # mal en curso, se terminará la funcion de cada nota pero no se 
+                                      # terminará el ingreso de notas acá, sino que queda inconcluso y el for sigue.
 
     diccionario_a[nombre] = [lista_notas]
 
+# funcion para validar cada_nota en funcion agregar_alumno:
+def validar_cada_nota():
+
+    while True:
+        try:
+            nota = float(input(f"Ingrese la nota: "))
+            if (nota >= 1) and (nota <= 7):
+                print("Ingreso exitoso.")
+                return nota # acá termina la funcion pero el for de la otra funcion hará que se repita esto,
+                            # return nota hace que el resultado de esta funcion sea entregar 1 nota hacia la
+                            # variable cada_nota y como allá arriba se repite en un for, validará nota por nota,
+                            # no es necesario un break porque el return termina la función y el ciclo.
+            else:
+                print("Error. La nota debe ser entre 1 y 7.")
+        except ValueError:
+            print("Error, la nota debe er un valor numérico.")
+
 # 2 función mostrar alumnos:
 def mostrar_alumnos(diccionario_a):
+
     if len(diccionario_a) == 0:   # diccionario vacío, usar len()
         print("Error, no hay alumnos registrados, por favor seleccione opción 1.")
-    else:
-        for nombre in diccionario_a:
-            print(f"Nombre alumno: {nombre}. Notas: {diccionario_a[nombre]}") # dicionario_a[nombre] muestra la lista
-
+        return # termina la función, vuelve al menú
+    
+    for nombre in diccionario_a:
+        print(f"Nombre alumno: {nombre}. Notas: {diccionario_a[nombre]}") # dicionario_a[nombre] muestra la lista
 
 # 3 función ver promedios:
 
